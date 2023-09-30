@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/logo.png" />
+    <title>URL shortener</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      :root {
+        /* Primary */
+        --White: hsl(0, 0%, 100%);
+        --Cyan: hsl(180, 66%, 49%);
+        --DarkViolet: hsl(257, 27%, 26%);
+        /* Secondary */
+        --Red: hsl(0, 87%, 67%);
+        /* Neutral */
+        --Gray: hsl(0, 0%, 75%);
+        --GrayishViolet: hsl(257, 7%, 63%);
+        --VeryDarkBlue: hsl(255, 11%, 22%);
+        --VeryDarkViolet: hsl(260, 8%, 14%);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      *::-webkit-scrollbar {
+        width: 8px;
+        background-color: var(--VeryDarkViolet);
+        border-radius: 10px;
+      }
+      *::-webkit-scrollbar-thumb {
+        background-color: var(--Cyan);
+        border-radius: 10px;
+      }
+      body {
+        height: max-content;
+        font-family: "Poppins", sans-serif;
+      }
+      .container {
+        padding: 0 24px;
+      }
+      .headercontainer {
+        height: 6rem;
+        display: flex;
+        background-color: red;
+        align-items: center;
+      }
+      header img:nth-child(2) {
+        display: none;
+      }
+      .sidebar {
+        display: flex;
+        flex: 1;
+        justify-content: space-between;
+        margin-left: 2rem;
+      }
+      .firstnav ul {
+        display: flex;
+        list-style: none;
+        gap: 1.5rem;
+      }
+      li {
+        cursor: pointer;
+      }
+      .btncont button {
+        padding: 0.5rem 1rem;
+        border-radius: 16px;
+        border: none;
+        font-weight: bold;
+        color: var(--VeryDarkBlue);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headercontainer">
+        <header>
+          <img src="./images/logo.svg" alt="shortylogo" />
+          <img src="./images/icon-menu.svg" alt="hamburgerlogo" />
+        </header>
+        <div class="sidebar">
+          <nav class="firstnav">
+            <ul>
+              <li>Features</li>
+              <li>Pricing</li>
+              <li>Resources</li>
+            </ul>
+          </nav>
+          <div class="btncont">
+            <button>Login</button>
+            <button>Sign Up</button>
+          </div>
+        </div>
+      </div>
+      <div class="maincontainer">
+        <div class="main1">
+          <h1>More than just shorter links</h1>
+          <p>
+            Build your brand’s recognition and get detailed insights on how your links are
+            performing.
+          </p>
+          <button>Get Started</button>
+        </div>
+        <div class="main2">
+          <img src="./images/illustration-working.svg" alt="" />
+        </div>
+      </div>
+      <div class="main2container">
+        <div class="inputcontainer">
+          <div class="innerinput">
+            <input type="url" name="" id="" placeholder="Shorten a link here..." />
+            <p>Please add a link</p>
+          </div>
+          <button>Shorten It!</button>
+        </div>
+        <div class="shortenlinkcontainer">
+          <p>https://github.com</p>
+          <div class="shortenedlink">
+            <p>https://rel.link.github.com/</p>
+            <button>Copy</button>
+          </div>
+        </div>
+        <div class="main2header">
+          <h1>Advanced Statistics</h1>
+          <p>
+            Track how your links are performing across the web with our advanced statistics
+            dashboard.
+          </p>
+        </div>
+        <div class="3main2container">
+          <div class="brand">
+            <img src="./images/icon-brand-recognition.svg" alt="" />
+            <h3>Brand Recognition</h3>
+            <p>
+              Boost your brand recognition with each click. Generic links don’t mean a thing.
+              Branded links help instil confidence in your content.
+            </p>
+          </div>
+          <div class="brand">
+            <img src="./images/icon-detailed-records.svg" alt="" />
+            <h3>Detailed Records</h3>
+            <p>
+              Gain insights into who is clicking your links. Knowing when and where people engage
+              with your content helps inform better decisions.
+            </p>
+          </div>
+          <div class="brand">
+            <img src="./images/icon-fully-customizable.svg" alt="" />
+            <h3>Fully Customizable</h3>
+            <p>
+              Improve brand awareness and content discoverability through customizable links,
+              supercharging audience engagement.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="main3container">
+        <h1>Boost your links today</h1>
+        <button>Get Started</button>
+      </div>
+      <footer>
+        <img src="./images/logo.svg" alt="logo" />
+        <div class="leftfooter">
+          <ul>
+            <p>Features</p>
+            <li>Link Shortening</li>
+            <li>Branded Links</li>
+            <li>Analytics</li>
+          </ul>
+          <ul>
+            <p>Resources</p>
+            <li>Blog</li>
+            <li>Developers</li>
+            <li>Support</li>
+          </ul>
+          <ul>
+            <p>Company</p>
+            <li>About</li>
+            <li>Our Team</li>
+            <li>Careers</li>
+            <li>Contact</li>
+          </ul>
+          <div class="lastimgcon">
+            <img src="./images/icon-facebook.svg" alt="fblogo" />
+            <img src="./images/icon-twitter.svg" alt="xlogo" />
+            <img src="./images/icon-pinterest.svg" alt="pinterestlogo" />
+            <img src="./images/icon-instagram.svg" alt="instalogo" />
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
