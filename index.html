@@ -73,6 +73,10 @@
           color: var(--VeryDarkViolet);
         }
       }
+      .uphr,
+      .midhr {
+        display: none;
+      }
       .btncont button {
         padding: 0.6rem 1.5rem;
         border-radius: 16px;
@@ -241,7 +245,7 @@
         font-size: small;
         color: var(--Gray);
       }
-      hr {
+      .downhr {
         width: 100%;
         height: 0.5rem;
         background-color: var(--Cyan);
@@ -362,6 +366,198 @@
       .lastimgcon svg path:hover {
         fill: var(--Cyan);
       }
+      @media (width <= 650px) {
+        /* Header Style */
+        .headercontainer header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex: 1;
+        }
+        header img:nth-child(2) {
+          display: inline;
+        }
+        .sidebar {
+          display: none;
+          width: 100%;
+          position: absolute;
+          top: 100px;
+          left: 0px;
+          right: 0px;
+          margin: 0 24px;
+          background-color: var(--DarkViolet);
+          padding: 2rem 1.5rem;
+          flex-direction: column;
+          border-radius: 10px;
+          gap: 1rem;
+        }
+        .btncont {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+        }
+        .firstnav ul {
+          flex-direction: column;
+        }
+        .uphr {
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: var(--Gray);
+          border: none;
+          margin: 1rem 0 0 0;
+        }
+        .firstnav ul {
+          color: var(--White);
+        }
+        .btncont button,
+        .btncont button:nth-child(1) {
+          color: var(--White);
+          font-weight: 800;
+        }
+
+        /* Main1 container */
+        .maincontainer {
+          flex-direction: column-reverse;
+          justify-content: flex-end;
+          height: 100vh;
+          gap: 2rem;
+        }
+        .main1 {
+          align-items: center;
+          width: 100%;
+          text-align: center;
+        }
+        .main1 h1 {
+          font-size: 40px;
+          line-height: 110%;
+        }
+        .main1 p {
+          font-size: 13px;
+        }
+        .main1 button,
+        .main3container button {
+          padding: 0.8rem 2rem;
+          font-size: 15px;
+        }
+        .main2 {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          left: 0rem;
+        }
+        .main2 img {
+          width: 150%;
+        }
+
+        /* Main2 container */
+        .main2container {
+          height: 180vh;
+        }
+        .displace {
+          top: -70px;
+        }
+        .inputcontainer {
+          flex-direction: column;
+          padding: 1rem;
+          gap: 2rem;
+        }
+        .shortenlinkcontainer,
+        .shortenedlink {
+          width: 100%;
+          flex-direction: column;
+          align-items: start;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .shortenlinkcontainer p {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .midhr {
+          display: block;
+          width: 100%;
+          height: 1px;
+          background-color: var(--Gray);
+          border: none;
+          margin: 0.5rem 0;
+        }
+        .shortenedlink button {
+          width: 100%;
+        }
+        .main2header {
+          margin-top: 2rem;
+          text-align: center;
+          width: 100%;
+        }
+        .main2header h1 {
+          font-size: 25px;
+        }
+        .main2header p {
+          font-size: small;
+          color: var(--Gray);
+        }
+
+        .themain2container {
+          flex-direction: column;
+          width: 100%;
+        }
+        .brand {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          padding: 0 1rem 1rem 1rem;
+
+          width: 100%;
+        }
+        .brand div {
+          width: 60px;
+          height: 60px;
+          padding: 1rem 1rem 1rem 1.25rem;
+          top: -30px;
+        }
+        .brand h3 {
+          font-size: 20px;
+        }
+        .brand p {
+          width: 100%;
+          text-align: center;
+          font-size: 13px;
+        }
+        .brand:nth-child(2) {
+          top: 3rem;
+        }
+        .brand:nth-child(3) {
+          top: 6rem;
+        }
+
+        /* main3container style */
+        .main3container {
+          height: 30vh;
+        }
+
+        /* footer style */
+        footer {
+          height: max-content;
+          align-items: center;
+
+          flex-direction: column;
+        }
+        .leftfooter {
+          flex-direction: column;
+          text-align: center;
+
+          margin-top: 2rem;
+        }
+
+        .lastimgcon {
+          gap: 1rem;
+        }
+      }
+
       @media (width >= 1100px) {
         .main2 img {
           width: max-content;
@@ -403,6 +599,7 @@
               <li>Resources</li>
             </ul>
           </nav>
+          <hr class="uphr" />
           <div class="btncont">
             <button>Login</button>
             <button>Sign Up</button>
@@ -432,7 +629,8 @@
             <button>Shorten It!</button>
           </div>
           <div class="shortenlinkcontainer">
-            <p>https://github.com</p>
+            <p>https://github.comtrgghgjmghgdrgthryttgretrhytjuyhtgehj</p>
+            <hr class="midhr" />
             <div class="shortenedlink">
               <p>https://rel.link.github.com/</p>
               <button>Copy</button>
@@ -446,7 +644,7 @@
             dashboard.
           </p>
         </div>
-        <hr />
+        <hr class="downhr" />
         <div class="themain2container">
           <div class="brand">
             <div>
