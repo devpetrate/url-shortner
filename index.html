@@ -186,6 +186,7 @@
         color: var(--GrayishViolet);
       }
       .innerinput p {
+        display: none;
         position: absolute;
         color: var(--Red);
         font-size: 10px;
@@ -379,17 +380,19 @@
         }
         .sidebar {
           display: none;
-          width: 100%;
+          width: calc(100% -24px);
+          margin: 0 24px;
           position: absolute;
           top: 100px;
           left: 0px;
           right: 0px;
-          margin: 0 24px;
           background-color: var(--DarkViolet);
           padding: 2rem 1.5rem;
           flex-direction: column;
           border-radius: 10px;
           gap: 1rem;
+          z-index: 1;
+          text-align: center;
         }
         .btncont {
           display: flex;
@@ -414,6 +417,7 @@
         .btncont button:nth-child(1) {
           color: var(--White);
           font-weight: 800;
+          margin: 0;
         }
 
         /* Main1 container */
@@ -558,7 +562,7 @@
         }
       }
 
-      @media (width >= 1100px) {
+      @media (min-width: 1100px) {
         .main2 img {
           width: max-content;
         }
@@ -589,7 +593,7 @@
       <div class="headercontainer">
         <header>
           <img src="./images/logo.svg" alt="shortylogo" />
-          <img src="./images/icon-menu.svg" alt="hamburgerlogo" />
+          <img id="menu" src="./images/icon-menu.svg" alt="hamburgerlogo" />
         </header>
         <div class="sidebar">
           <nav class="firstnav">
@@ -623,19 +627,19 @@
         <div class="displace">
           <div class="inputcontainer">
             <div class="innerinput">
-              <input type="url" name="" id="" placeholder="Shorten a link here..." />
-              <p>Please add a link</p>
+              <input type="url" name="" id="linkinputed" placeholder="Shorten a link here..." />
+              <p id="error">Please add a link</p>
             </div>
-            <button>Shorten It!</button>
+            <button id="shortbtn">Shorten It!</button>
           </div>
-          <div class="shortenlinkcontainer">
-            <p>https://github.comtrgghgjmghgdrgthryttgretrhytjuyhtgehj</p>
+          <!-- <div class="shortenlinkcontainer">
+            <p id="linkinput">https://github.comtrgghgjmghgdrgthryttgretrhytjuyhtgehj</p>
             <hr class="midhr" />
             <div class="shortenedlink">
-              <p>https://rel.link.github.com/</p>
-              <button>Copy</button>
+              <p id="shortenlink">https://rel.link.github.com/</p>
+              <button id="copybtn">Copy</button>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="main2header">
           <h1>Advanced Statistics</h1>
@@ -738,5 +742,119 @@
         </div>
       </footer>
     </div>
+
+    <script>
+      const menu = document.querySelector("#menu");
+      const sideBar = document.querySelector(".sidebar");
+
+      const displace = document.querySelector(".displace");
+      const linkInputed = document.querySelector("#linkinputed");
+      const error = document.querySelector("#error");
+      const shortBtn = document.querySelector("#shortbtn");
+      // const linkInput = document.querySelector("#linkinput");
+      // const shortenLink = document.querySelector("#shortenlink");
+      const copyBtn = document.querySelector("#copybtn");
+
+      const APIURL = "https://api.shrtco.de/v2/shorten?url=";
+
+      async function getShortenedLink(url) {
+        try {
+          const response = await fetch(url);
+          if (!response.ok) {
+            throw new Error("Network response was not ok");
+          }
+          const data = await response.json();
+          return data.result.full_short_link; // Return the shortened link
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          return null; // Return null in case of an error
+        }
+      }
+
+      shortBtn.addEventListener("click", async () => {
+        let input = linkInputed.value;
+
+        if (input.trim().length === 0) {
+          error.style.display = "block";
+          linkInputed.style.border = "2px solid var(--Red)";
+          console.log("empty");
+        } else {
+          const showShortenedLink = await getShortenedLink(APIURL + input);
+          if (showShortenedLink) {
+            // linkInput.innerHTML = input;
+            // Create a div with class "shortenlinkcontainer"
+            const shortenLinkContainer = document.createElement("div");
+            shortenLinkContainer.classList.add("shortenlinkcontainer");
+
+            // Create a paragraph element with id "linkinput" and set its text content
+            const linkInput = document.createElement("p");
+            linkInput.id = "linkinput";
+            linkInput.textContent = input;
+
+            // Create an hr element with class "midhr"
+            const midHr = document.createElement("hr");
+            midHr.classList.add("midhr");
+
+            // Create a div with class "shortenedlink"
+            const shortenedLink = document.createElement("div");
+            shortenedLink.classList.add("shortenedlink");
+
+            // Create a paragraph element with id "shortenlink" and set its text content
+            const shortenLink = document.createElement("p");
+            shortenLink.id = "shortenlink";
+            shortenLink.textContent = showShortenedLink;
+
+            // Create a button element with id "copybtn" and set its text content
+            const copyBtn = document.createElement("button");
+            copyBtn.id = "copybtn";
+            copyBtn.textContent = "Copy";
+
+            // Append the elements to build the structure
+            shortenedLink.appendChild(shortenLink);
+            shortenedLink.appendChild(copyBtn);
+
+            shortenLinkContainer.appendChild(linkInput);
+            shortenLinkContainer.appendChild(midHr);
+            shortenLinkContainer.appendChild(shortenedLink);
+
+            // Append the entire structure to the displace container
+            displace.appendChild(shortenLinkContainer);
+            console.error("No shortened link available");
+
+            copyBtn.onclick = () => {
+              // Create a temporary textarea element
+              const textarea = document.createElement("textarea");
+              textarea.value = showShortenedLink;
+              document.body.appendChild(textarea);
+
+              // Select the text and copy it to the clipboard
+              textarea.select();
+              document.execCommand("copy");
+
+              // Remove the temporary textarea
+              document.body.removeChild(textarea);
+
+              // Update the button text and background color
+              copyBtn.textContent = "Copied!";
+              copyBtn.style.backgroundColor = "var(--DarkViolet)";
+            };
+          } else {
+            console.error("No shortened link available");
+          }
+        }
+      });
+
+      menu.addEventListener("click", () => {
+        // Check the current state of the sidebar's display property
+        const currentDisplay = getComputedStyle(sideBar).getPropertyValue("display");
+
+        // Toggle the display property based on its current state
+        if (currentDisplay === "none") {
+          sideBar.style.display = "flex";
+        } else {
+          sideBar.style.display = "none";
+        }
+      });
+    </script>
   </body>
 </html>
